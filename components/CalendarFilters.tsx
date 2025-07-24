@@ -70,8 +70,8 @@ export default function CalendarFilters({
 
   return (
     <div className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-800/60">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between mb-4">
+      <div className="max-w-7xl mx-auto px-2 py-4 md:px-6 md:py-4">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4">
           <h3 className="text-lg font-semibold text-white flex items-center">
             <i className="ri-filter-2-line w-5 h-5 flex items-center justify-center mr-2 text-purple-400"></i>
             Фильтры
@@ -84,7 +84,7 @@ export default function CalendarFilters({
           </button>
         </div>
 
-        <div className="flex items-center space-x-6">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:space-x-6">
           {/* Быстрый фильтр по играм */}
           <div className="flex items-center space-x-2">
             <span className="text-sm font-medium text-gray-300">Игра:</span>

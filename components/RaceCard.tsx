@@ -116,13 +116,13 @@ export default function RaceCard({ race }: RaceCardProps) {
     <div className={`group relative overflow-hidden rounded-xl border transition-all duration-300 hover:scale-[1.02] ${isPassed ? 'bg-gray-800/50 border-gray-700/50 backdrop-blur-sm' : 'bg-gray-800/80 border-gray-700/60 backdrop-blur-sm hover:bg-gray-800/90 hover:border-gray-600/70'}`}>
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-      <div className="relative p-6">
-        <div className="flex items-start justify-between mb-4">
+      <div className="relative p-3 md:p-6">
+        <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between mb-2 md:mb-4">
           <div className="flex-1">
-            <div className="flex items-center space-x-2 mb-3">
-              <div className={`flex items-center space-x-2 px-3 py-1.5 rounded-full border ${isPassed ? 'bg-gray-700/50 text-gray-400 border-gray-600/50' : getSeriesColor(race.series)}`}>
-                <i className={`${getSeriesIcon(race.series)} w-4 h-4 flex items-center justify-center`}></i>
-                <span className="text-sm font-medium">{getSeriesShortName(race.series)}</span>
+            <div className="flex flex-wrap items-center gap-2 mb-2 md:mb-3">
+              <div className={`flex items-center space-x-2 px-2 py-1 md:px-3 md:py-1.5 rounded-full border ${isPassed ? 'bg-gray-700/50 text-gray-400 border-gray-600/50' : getSeriesColor(race.series)}`}>
+                <i className={`${getSeriesIcon(race.series)} w-4 h-4 md:w-5 md:h-5 flex items-center justify-center`}></i>
+                <span className="text-xs md:text-sm font-medium">{getSeriesShortName(race.series)}</span>
               </div>
               <div className={`px-2 py-1 rounded-full border ${isPassed ? 'bg-gray-700/50 text-gray-400 border-gray-600/50' : getGameColor(race.series)}`}>
                 <span className="text-xs font-bold">{getGamePlatform(race.series)}</span>
@@ -135,21 +135,21 @@ export default function RaceCard({ race }: RaceCardProps) {
               )}
             </div>
 
-            <h3 className={`text-xl font-bold mb-3 ${isPassed ? 'text-gray-300' : 'text-white'}`}>{race.stage}</h3>
+            <h3 className={`text-base md:text-xl font-bold mb-2 md:mb-3 ${isPassed ? 'text-gray-300' : 'text-white'}`}>{race.stage}</h3>
 
-            <div className="space-y-2">
+            <div className="space-y-1 md:space-y-2">
               <div className={`flex items-center space-x-2 ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>
-                <div className="w-5 h-5 flex items-center justify-center">
+                <div className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center">
                   <i className="ri-calendar-2-line w-4 h-4 flex items-center justify-center"></i>
                 </div>
-                <span className="text-sm">{race.date}</span>
+                <span className="text-xs md:text-sm">{race.date}</span>
                 <span className="text-xs text-gray-500">({race.dayOfWeek})</span>
               </div>
               <div className={`flex items-center space-x-2 ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>
-                <div className="w-5 h-5 flex items-center justify-center">
+                <div className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center">
                   <i className="ri-time-line w-4 h-4 flex items-center justify-center"></i>
                 </div>
-                <span className="text-sm">{race.time}</span>
+                <span className="text-xs md:text-sm">{race.time}</span>
                 <span className="text-xs text-gray-500">МСК</span>
               </div>
             </div>
@@ -159,30 +159,30 @@ export default function RaceCard({ race }: RaceCardProps) {
             <button
               onClick={addToGoogleCalendar}
               type="button"
-              className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl"
+              className="flex items-center space-x-2 px-3 py-2 md:px-4 md:py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl"
             >
               <i className="ri-google-line w-4 h-4 flex items-center justify-center"></i>
-              <span className="text-sm font-medium">В календарь</span>
+              <span className="text-xs md:text-sm font-medium">В календарь</span>
             </button>
           )}
         </div>
 
-        <div className={`border-t pt-4 ${isPassed ? 'border-gray-700/50' : 'border-gray-700/60'}`}>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${isPassed ? 'bg-gray-700/50' : 'bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30'}`}>
-                <i className={`ri-roadster-line w-6 h-6 flex items-center justify-center ${isPassed ? 'text-gray-400' : 'text-blue-300'}`}></i>
+        <div className={`border-t pt-2 md:pt-4 ${isPassed ? 'border-gray-700/50' : 'border-gray-700/60'}`}>
+          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+            <div className="flex items-center space-x-2 md:space-x-3">
+              <div className={`w-8 h-8 md:w-12 md:h-12 rounded-lg flex items-center justify-center ${isPassed ? 'bg-gray-700/50' : 'bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30'}`}>
+                <i className={`ri-roadster-line w-5 h-5 md:w-6 md:h-6 flex items-center justify-center ${isPassed ? 'text-gray-400' : 'text-blue-300'}`}></i>
               </div>
               <div>
-                <p className={`text-sm font-medium ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>Трасса</p>
+                <p className={`text-xs md:text-sm font-medium ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>Трасса</p>
                 <p className={`text-xs ${isPassed ? 'text-gray-500' : 'text-gray-400'}`}>Автодром</p>
               </div>
             </div>
 
             {isPassed && (
               <div className="flex items-center space-x-2 text-green-400">
-                <i className="ri-checkbox-circle-fill w-5 h-5 flex items-center justify-center"></i>
-                <span className="text-sm font-medium">Завершено</span>
+                <i className="ri-checkbox-circle-fill w-4 h-4 md:w-5 md:h-5 flex items-center justify-center"></i>
+                <span className="text-xs md:text-sm font-medium">Завершено</span>
               </div>
             )}
           </div>

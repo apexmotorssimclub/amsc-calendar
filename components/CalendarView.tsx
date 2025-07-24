@@ -137,8 +137,8 @@ export default function CalendarView({ races }: CalendarViewProps) {
   const isMonthPassed = (monthRaces: Race[]) => monthRaces.every(isRacePassed);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8">
-      <div className="flex items-center justify-between mb-8">
+    <div className="max-w-7xl mx-auto px-2 py-4 md:px-6 md:py-8">
+      <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4 md:mb-8">
         <h2 className="text-2xl font-bold text-white">
           Расписание гонок
         </h2>
@@ -170,9 +170,9 @@ export default function CalendarView({ races }: CalendarViewProps) {
         const monthPassed = isMonthPassed(monthRaces);
         const isCollapsed = collapsedMonths[monthKey] ?? monthPassed;
         return (
-          <div key={monthKey} className="mb-8 bg-gray-900/70 rounded-xl border border-gray-700/40 overflow-hidden">
+          <div key={monthKey} className="mb-6 bg-gray-900/70 rounded-xl border border-gray-700/40 overflow-hidden">
             <div
-              className="flex items-center justify-between mb-4 px-4 pt-4 cursor-pointer select-none"
+              className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between mb-2 md:mb-4 px-2 pt-2 md:px-4 md:pt-4 cursor-pointer select-none"
               onClick={() =>
                 monthPassed && setCollapsedMonths((prev) => ({ ...prev, [monthKey]: !isCollapsed }))
               }
@@ -196,13 +196,13 @@ export default function CalendarView({ races }: CalendarViewProps) {
 
             {!isCollapsed && (
               viewMode === 'grid' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4 pb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 px-2 pb-2 md:px-4 md:pb-4">
                   {monthRaces.map((race) => (
                     <RaceCard key={race.id} race={race} />
                   ))}
                 </div>
               ) : (
-                <div className="space-y-3 px-4 pb-4">
+                <div className="space-y-2 md:space-y-3 px-2 pb-2 md:px-4 md:pb-4">
                   {monthRaces.map((race) => {
                     const isPassed = isRacePassed(race);
                     return (
