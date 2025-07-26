@@ -154,7 +154,7 @@ export const races: Race[] = [
   },
   {
     id: '19',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион Б AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион Б AC',
     stage: 'Сочи Автодром',
     date: '11.03.2025',
     time: '18:00',
@@ -162,7 +162,7 @@ export const races: Race[] = [
   },
   {
     id: '20',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион Б AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион Б AC',
     stage: 'Москов Рэйсвей',
     date: '29.04.2025',
     time: '18:00',
@@ -170,7 +170,7 @@ export const races: Race[] = [
   },
   {
     id: '21',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион Б AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион Б AC',
     stage: 'Казань Ринг',
     date: '10.06.2025',
     time: '18:00',
@@ -178,7 +178,7 @@ export const races: Race[] = [
   },
   {
     id: '22',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион Б AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион Б AC',
     stage: 'Крепость Грозный',
     date: '12.08.2025',
     time: '18:00',
@@ -186,7 +186,7 @@ export const races: Race[] = [
   },
   {
     id: '23',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион Б AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион Б AC',
     stage: 'НРинг',
     date: '16.09.2025',
     time: '18:00',
@@ -194,7 +194,7 @@ export const races: Race[] = [
   },
   {
     id: '24',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион Б AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион Б AC',
     stage: 'Смоленское Кольцо',
     date: '18.11.2025',
     time: '18:00',
@@ -202,7 +202,7 @@ export const races: Race[] = [
   },
   {
     id: '25',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион А AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион А AC',
     stage: 'Сочи Автодром',
     date: '10.03.2025',
     time: '18:00',
@@ -210,7 +210,7 @@ export const races: Race[] = [
   },
   {
     id: '26',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион А AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион А AC',
     stage: 'Москов Рэйсвей',
     date: '28.04.2025',
     time: '18:00',
@@ -218,7 +218,7 @@ export const races: Race[] = [
   },
   {
     id: '27',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион А AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион А AC',
     stage: 'Казань Ринг',
     date: '30.06.2025',
     time: '18:00',
@@ -226,7 +226,7 @@ export const races: Race[] = [
   },
   {
     id: '28',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион А AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион А AC',
     stage: 'Крепость Грозный',
     date: '11.08.2025',
     time: '18:00',
@@ -234,7 +234,7 @@ export const races: Race[] = [
   },
   {
     id: '29',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион А AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион А AC',
     stage: 'НРинг',
     date: '15.09.2025',
     time: '18:00',
@@ -242,7 +242,7 @@ export const races: Race[] = [
   },
   {
     id: '30',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион А AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион А AC',
     stage: 'Смоленское Кольцо',
     date: '17.11.2025',
     time: '18:00',
@@ -250,7 +250,7 @@ export const races: Race[] = [
   },
   {
     id: '31',
-    series: 'AMSC - РКГГ 2025 Туринг Дивизион А AC',
+    series: 'AMSC - РСКГ 2025 Туринг Дивизион А AC',
     stage: 'Игора Драйв',
     date: '15.12.2025',
     time: '18:00',

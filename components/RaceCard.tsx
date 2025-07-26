@@ -74,120 +74,92 @@ export default function RaceCard({ race }: RaceCardProps) {
     }
   };
 
+  // Получение платформы игры (AC/ACC)
   const getGamePlatform = (series: string) => {
     if (series.includes('ACC')) return 'ACC';
     if (series.includes('AC')) return 'AC';
     return 'AC';
   };
 
-  const getGameColor = (series: string) => {
-    if (series.includes('ACC')) return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-    if (series.includes('AC')) return 'bg-red-500/20 text-red-300 border-red-500/30';
-    return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
-  };
-
-  const getSeriesColor = (series: string) => {
-    if (series.includes('TIME ATTACK')) return 'bg-red-500/20 text-red-300 border-red-500/30';
-    if (series.includes('GT3')) return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-    if (series.includes('Дивизион А')) return 'bg-green-500/20 text-green-300 border-green-500/30';
-    if (series.includes('Дивизион Б')) return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30';
-    return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
-  };
-
-  const getSeriesShortName = (series: string) => {
-    if (series.includes('TIME ATTACK')) return 'TIME ATTACK';
+  // Получение типа заезда
+  const getRaceType = (series: string) => {
+    if (series.includes('TIME ATTACK')) return 'Тайм Атака';
     if (series.includes('GT3')) return 'GT3';
     if (series.includes('Дивизион А')) return 'Туринг А';
     if (series.includes('Дивизион Б')) return 'Туринг Б';
-    return series;
+    return 'Гонка';
   };
 
-  const getSeriesIcon = (series: string) => {
-    if (series.includes('TIME ATTACK')) return 'ri-timer-flash-line';
-    if (series.includes('GT3')) return 'ri-car-line';
-    if (series.includes('Дивизион А')) return 'ri-trophy-line';
-    if (series.includes('Дивизион Б')) return 'ri-award-line';
-    return 'ri-flag-line';
+  // Цвета для платформы игры
+  const getGameColor = (series: string) => {
+    if (series.includes('ACC')) return 'bg-blue-600/80 text-blue-100 border-blue-500/50';
+    if (series.includes('AC')) return 'bg-red-600/80 text-red-100 border-red-500/50';
+    return 'bg-gray-600/80 text-gray-100 border-gray-500/50';
+  };
+
+  // Цвета для типа заезда
+  const getRaceTypeColor = (series: string) => {
+    if (series.includes('TIME ATTACK')) return 'bg-orange-600/80 text-orange-100 border-orange-500/50';
+    if (series.includes('GT3')) return 'bg-purple-600/80 text-purple-100 border-purple-500/50';
+    if (series.includes('Дивизион А')) return 'bg-green-600/80 text-green-100 border-green-500/50';
+    if (series.includes('Дивизион Б')) return 'bg-yellow-600/80 text-yellow-100 border-yellow-500/50';
+    return 'bg-gray-600/80 text-gray-100 border-gray-500/50';
   };
 
   const isPassed = isRacePassed();
 
   return (
-    <div className={`group relative overflow-hidden rounded-xl border transition-all duration-300 hover:scale-[1.02] ${isPassed ? 'bg-gray-800/50 border-gray-700/50 backdrop-blur-sm' : 'bg-gray-800/80 border-gray-700/60 backdrop-blur-sm hover:bg-gray-800/90 hover:border-gray-600/70'}`}>
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-      <div className="relative p-3 md:p-6">
-        <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between mb-2 md:mb-4">
-          <div className="flex-1">
-            <div className="flex flex-wrap items-center gap-2 mb-2 md:mb-3">
-              <div className={`flex items-center space-x-2 px-2 py-1 md:px-3 md:py-1.5 rounded-full border ${isPassed ? 'bg-gray-700/50 text-gray-400 border-gray-600/50' : getSeriesColor(race.series)}`}>
-                <i className={`${getSeriesIcon(race.series)} w-4 h-4 md:w-5 md:h-5 flex items-center justify-center`}></i>
-                <span className="text-xs md:text-sm font-medium">{getSeriesShortName(race.series)}</span>
-              </div>
-              <div className={`px-2 py-1 rounded-full border ${isPassed ? 'bg-gray-700/50 text-gray-400 border-gray-600/50' : getGameColor(race.series)}`}>
-                <span className="text-xs font-bold">{getGamePlatform(race.series)}</span>
-              </div>
-              {isPassed && (
-                <div className="flex items-center space-x-1 px-2 py-1 rounded-full bg-green-500/20 text-green-300 border border-green-500/30">
-                  <i className="ri-checkbox-circle-fill w-3 h-3 flex items-center justify-center"></i>
-                  <span className="text-xs font-medium">Завершено</span>
-                </div>
-              )}
-            </div>
-
-            <h3 className={`text-base md:text-xl font-bold mb-2 md:mb-3 ${isPassed ? 'text-gray-300' : 'text-white'}`}>{race.stage}</h3>
-
-            <div className="space-y-1 md:space-y-2">
-              <div className={`flex items-center space-x-2 ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>
-                <div className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center">
-                  <i className="ri-calendar-2-line w-4 h-4 flex items-center justify-center"></i>
-                </div>
-                <span className="text-xs md:text-sm">{race.date}</span>
-                <span className="text-xs text-gray-500">({race.dayOfWeek})</span>
-              </div>
-              <div className={`flex items-center space-x-2 ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>
-                <div className="w-4 h-4 md:w-5 md:h-5 flex items-center justify-center">
-                  <i className="ri-time-line w-4 h-4 flex items-center justify-center"></i>
-                </div>
-                <span className="text-xs md:text-sm">{race.time}</span>
-                <span className="text-xs text-gray-500">МСК</span>
-              </div>
-            </div>
+    <div className={`h-full flex flex-col bg-gray-800/90 border border-gray-700/60 rounded-xl p-4 transition-all duration-300 hover:bg-gray-800/95 hover:border-gray-600/70 ${isPassed ? 'opacity-75' : ''}`}>
+      
+      {/* Плашки вверху */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center gap-2">
+          {/* Платформа игры */}
+          <div className={`px-2 py-1 rounded-md border text-xs font-medium ${getGameColor(race.series)}`}>
+            {getGamePlatform(race.series)}
           </div>
-
-          {!isPassed && (
-            <button
-              onClick={addToGoogleCalendar}
-              type="button"
-              className="flex items-center space-x-2 px-3 py-2 md:px-4 md:py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl"
-            >
-              <i className="ri-google-line w-4 h-4 flex items-center justify-center"></i>
-              <span className="text-xs md:text-sm font-medium">В календарь</span>
-            </button>
-          )}
+          
+          {/* Тип заезда */}
+          <div className={`px-2 py-1 rounded-md border text-xs font-medium ${getRaceTypeColor(race.series)}`}>
+            {getRaceType(race.series)}
+          </div>
         </div>
-
-        <div className={`border-t pt-2 md:pt-4 ${isPassed ? 'border-gray-700/50' : 'border-gray-700/60'}`}>
-          <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
-            <div className="flex items-center space-x-2 md:space-x-3">
-              <div className={`w-8 h-8 md:w-12 md:h-12 rounded-lg flex items-center justify-center ${isPassed ? 'bg-gray-700/50' : 'bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-500/30'}`}>
-                <i className={`ri-roadster-line w-5 h-5 md:w-6 md:h-6 flex items-center justify-center ${isPassed ? 'text-gray-400' : 'text-blue-300'}`}></i>
-              </div>
-              <div>
-                <p className={`text-xs md:text-sm font-medium ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>Трасса</p>
-                <p className={`text-xs ${isPassed ? 'text-gray-500' : 'text-gray-400'}`}>Автодром</p>
-              </div>
-            </div>
-
-            {isPassed && (
-              <div className="flex items-center space-x-2 text-green-400">
-                <i className="ri-checkbox-circle-fill w-4 h-4 md:w-5 md:h-5 flex items-center justify-center"></i>
-                <span className="text-xs md:text-sm font-medium">Завершено</span>
-              </div>
-            )}
+        
+        {/* Плашка "Завершено" */}
+        {isPassed && (
+          <div className="px-2 py-1 rounded-md bg-green-600/80 text-green-100 border border-green-500/50 text-xs font-medium">
+            Завершено
           </div>
+        )}
+      </div>
+
+      {/* Название трассы */}
+      <h3 className={`text-lg font-bold mb-4 ${isPassed ? 'text-gray-300' : 'text-white'} truncate`}>
+        {race.stage}
+      </h3>
+
+      {/* Дата и время */}
+      <div className="space-y-2 mb-4">
+        <div className={`flex items-center gap-2 ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>
+          <i className="ri-calendar-2-line text-sm"></i>
+          <span className="text-sm">{race.date} ({race.dayOfWeek})</span>
+        </div>
+        <div className={`flex items-center gap-2 ${isPassed ? 'text-gray-400' : 'text-gray-300'}`}>
+          <i className="ri-time-line text-sm"></i>
+          <span className="text-sm">{race.time} МСК</span>
         </div>
       </div>
+
+      {/* Кнопка "В календарь" */}
+      {!isPassed && (
+        <button
+          onClick={addToGoogleCalendar}
+          className="mt-auto w-full px-3 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium flex items-center justify-center gap-2"
+        >
+          <i className="ri-google-line"></i>
+          В календарь
+        </button>
+      )}
     </div>
   );
 }

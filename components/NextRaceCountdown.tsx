@@ -55,10 +55,19 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
     return 'AC';
   };
 
+  // Цвета для платформы игры (как в RaceCard)
   const getGameColor = (series: string) => {
-    if (series.includes('ACC')) return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
-    if (series.includes('AC')) return 'bg-red-500/20 text-red-300 border-red-500/30';
-    return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
+    if (series.includes('ACC')) return 'bg-blue-600/80 text-blue-100 border-blue-500/50';
+    if (series.includes('AC')) return 'bg-red-600/80 text-red-100 border-red-500/50';
+    return 'bg-gray-600/80 text-gray-100 border-gray-500/50';
+  };
+  // Цвета для типа заезда (как в RaceCard)
+  const getRaceTypeColor = (series: string) => {
+    if (series.includes('TIME ATTACK')) return 'bg-orange-600/80 text-orange-100 border-orange-500/50';
+    if (series.includes('GT3')) return 'bg-purple-600/80 text-purple-100 border-purple-500/50';
+    if (series.includes('Дивизион А')) return 'bg-green-600/80 text-green-100 border-green-500/50';
+    if (series.includes('Дивизион Б')) return 'bg-yellow-600/80 text-yellow-100 border-yellow-500/50';
+    return 'bg-gray-600/80 text-gray-100 border-gray-500/50';
   };
 
   const getSeriesShortName = (series: string) => {
@@ -75,6 +84,14 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
     if (series.includes('Дивизион А')) return 'ri-trophy-line';
     if (series.includes('Дивизион Б')) return 'ri-award-line';
     return 'ri-flag-line';
+  };
+
+  const getSeriesColor = (series: string) => {
+    if (series.includes('TIME ATTACK')) return 'bg-red-500/20 text-red-300 border-red-500/30';
+    if (series.includes('GT3')) return 'bg-blue-500/20 text-blue-300 border-blue-500/30';
+    if (series.includes('Дивизион А')) return 'bg-green-500/20 text-green-300 border-green-500/30';
+    if (series.includes('Дивизион Б')) return 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30';
+    return 'bg-gray-500/20 text-gray-300 border-gray-500/30';
   };
 
   const addToGoogleCalendar = () => {
@@ -116,18 +133,18 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
 
   if (!race) {
     return (
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        <div className="relative overflow-hidden bg-gradient-to-br from-gray-800/60 to-gray-900/80 backdrop-blur-sm rounded-3xl border border-gray-700/60">
+      <div className="max-w-7xl mx-auto px-2 py-4 md:px-6 md:py-8">
+        <div className="relative overflow-hidden bg-gradient-to-br from-gray-800/60 to-gray-900/80 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-700/60">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10"></div>
-          <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-2xl"></div>
-          <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-full blur-2xl"></div>
+          <div className="absolute top-0 left-0 w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-xl md:blur-2xl"></div>
+          <div className="absolute bottom-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-full blur-xl md:blur-2xl"></div>
 
-          <div className="relative p-12 text-center">
-            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-gray-700/50 to-gray-600/50 rounded-full flex items-center justify-center shadow-xl">
-              <i className="ri-calendar-line w-10 h-10 flex items-center justify-center text-gray-400"></i>
+          <div className="relative p-6 md:p-12 text-center">
+            <div className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 md:mb-6 bg-gradient-to-br from-gray-700/50 to-gray-600/50 rounded-full flex items-center justify-center shadow-xl">
+              <i className="ri-calendar-line w-8 h-8 md:w-10 md:h-10 flex items-center justify-center text-gray-400"></i>
             </div>
-            <h2 className="text-3xl font-bold text-white mb-3">Нет предстоящих гонок</h2>
-            <p className="text-gray-400 text-lg">Проверьте расписание позже</p>
+            <h2 className="text-xl md:text-3xl font-bold text-white mb-2 md:mb-3">Нет предстоящих гонок</h2>
+            <p className="text-gray-400 text-sm md:text-lg">Проверьте расписание позже</p>
           </div>
         </div>
       </div>
@@ -135,127 +152,134 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-8">
-      <div className="relative overflow-hidden bg-gradient-to-br from-gray-800/90 to-gray-900/95 backdrop-blur-sm rounded-3xl border border-gray-700/60 shadow-2xl">
+    <div className="max-w-7xl mx-auto px-2 py-4 md:px-6 md:py-8">
+      <div className="relative overflow-hidden bg-gradient-to-br from-gray-800/90 to-gray-900/95 backdrop-blur-sm rounded-2xl md:rounded-3xl border border-gray-700/60 shadow-2xl">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-500/15 via-blue-500/10 to-cyan-500/15"></div>
-        <div className="absolute top-0 left-0 w-48 h-48 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-0 w-48 h-48 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-2xl"></div>
+        <div className="absolute top-0 left-0 w-32 h-32 md:w-48 md:h-48 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-2xl md:blur-3xl"></div>
+        <div className="absolute bottom-0 right-0 w-32 h-32 md:w-48 md:h-48 bg-gradient-to-tl from-purple-500/20 to-transparent rounded-full blur-2xl md:blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-32 md:h-32 bg-gradient-to-br from-cyan-500/10 to-transparent rounded-full blur-xl md:blur-2xl"></div>
 
-        <div className="relative p-8">
-          <div className="flex items-center justify-between mb-8">
-            <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-2xl flex items-center justify-center border border-blue-500/40 shadow-lg">
-                <i className="ri-timer-flash-line w-8 h-8 flex items-center justify-center text-blue-300"></i>
+        <div className="relative p-4 md:p-8">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 md:mb-8 gap-4">
+            <div className="flex items-center space-x-3 md:space-x-4">
+              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-xl md:rounded-2xl flex items-center justify-center border border-blue-500/40 shadow-lg">
+                <i className="ri-timer-flash-line w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-blue-300"></i>
               </div>
               <div>
-                <h2 className="text-3xl font-bold text-white mb-1">Ближайшая гонка</h2>
-                <p className="text-gray-400 text-lg">До старта осталось</p>
+                <h2 className="text-xl md:text-3xl font-bold text-white mb-1">Ближайшая гонка</h2>
+                <p className="text-gray-400 text-sm md:text-lg">До старта осталось</p>
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <div className="px-4 py-2 bg-gradient-to-r from-green-500/20 to-emerald-500/20 text-green-300 rounded-full border border-green-500/30 shadow-lg">
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium">LIVE</span>
-                </div>
+              <div className="px-2 py-1 rounded-md bg-green-600/80 text-green-100 border border-green-500/50 text-xs font-medium flex items-center gap-1">
+                <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse inline-block"></span>
+                LIVE
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-6">
-              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-xl flex items-center justify-center border border-red-500/30">
-                      <i className={`${getSeriesIcon(race.series)} w-6 h-6 flex items-center justify-center text-red-300`}></i>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-white">{race.stage}</h3>
-                      <div className="flex items-center space-x-3 mt-1">
-                        <span className="text-gray-400">{getSeriesShortName(race.series)}</span>
-                        <div className={`px-3 py-1 rounded-full border ${getGameColor(race.series)}`}>
-                          <span className="text-xs font-bold">{getGamePlatform(race.series)}</span>
-                        </div>
-                      </div>
-                    </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
+            <div className="lg:col-span-2 space-y-4 md:space-y-6">
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-gray-700/50">
+                {/* Заголовок гонки */}
+                <div className="text-center mb-4 md:mb-6">
+                  <h3 className="text-lg md:text-2xl font-bold text-white mb-2">{race.stage}</h3>
+                  
+                  {/* Плашки серии и игры */}
+                  <div className="flex flex-wrap items-center justify-center gap-2 mb-3">
+                    <div className={`px-2 py-1 rounded-md border text-xs font-medium ${getRaceTypeColor(race.series)}`}>{getSeriesShortName(race.series)}</div>
+                    <div className={`px-2 py-1 rounded-md border text-xs font-medium ${getGameColor(race.series)}`}>{getGamePlatform(race.series)}</div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-gray-700/30 rounded-xl p-4">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <i className="ri-calendar-2-line w-5 h-5 flex items-center justify-center text-blue-400"></i>
-                      <span className="text-sm text-gray-400">Дата</span>
+                {/* Дата и время */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                  <div className="bg-gray-700/30 rounded-lg md:rounded-xl p-3 md:p-4 text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <i className="ri-calendar-2-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center text-blue-400"></i>
+                      <span className="text-xs md:text-sm text-gray-400">Дата</span>
                     </div>
-                    <p className="text-white font-semibold">{race.date}</p>
-                    <p className="text-sm text-gray-400">{race.dayOfWeek}</p>
+                    <p className="text-white font-semibold text-sm md:text-base">{race.date}</p>
+                    <p className="text-xs md:text-sm text-gray-400">{race.dayOfWeek}</p>
                   </div>
 
-                  <div className="bg-gray-700/30 rounded-xl p-4">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <i className="ri-time-line w-5 h-5 flex items-center justify-center text-purple-400"></i>
-                      <span className="text-sm text-gray-400">Время</span>
+                  <div className="bg-gray-700/30 rounded-lg md:rounded-xl p-3 md:p-4 text-center">
+                    <div className="flex items-center justify-center space-x-2 mb-2">
+                      <i className="ri-time-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center text-purple-400"></i>
+                      <span className="text-xs md:text-sm text-gray-400">Время</span>
                     </div>
-                    <p className="text-white font-semibold">{race.time}</p>
-                    <p className="text-sm text-gray-400">МСК</p>
+                    <p className="text-white font-semibold text-sm md:text-base">{race.time}</p>
+                    <p className="text-xs md:text-sm text-gray-400">МСК</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-4">
+              {/* Кнопка добавления в календарь */}
+              <div className="flex justify-center">
                 <button
                   onClick={addToGoogleCalendar}
                   type="button"
-                  className="flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl hover:scale-105"
+                  className="flex items-center justify-center space-x-2 md:space-x-3 px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg md:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl hover:scale-105 text-sm md:text-base font-medium"
                 >
-                  <i className="ri-google-line w-5 h-5 flex items-center justify-center"></i>
-                  <span className="font-medium">Добавить в календарь</span>
+                  <i className="ri-google-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center"></i>
+                  <span>Добавить в календарь</span>
                 </button>
               </div>
             </div>
 
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-4 border border-gray-700/50 flex flex-col items-center justify-center">
-              <h4 className="text-base font-semibold text-white mb-2 flex items-center">
-                <i className="ri-timer-2-line w-4 h-4 flex items-center justify-center mr-1 text-cyan-400"></i>
+            {/* Блок обратного отсчета */}
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-gray-700/50 flex flex-col items-center justify-center">
+              <h4 className="text-sm md:text-base font-semibold text-white mb-4 flex items-center justify-center">
+                <i className="ri-timer-2-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center mr-2 text-cyan-400"></i>
                 Обратный отсчет
               </h4>
 
-              <div className="space-y-2">
+              <div className="space-y-3 md:space-y-4 w-full">
+                {/* Дни */}
                 <div className="text-center">
-                  <div className="text-6xl font-bold text-white mb-1" suppressHydrationWarning={true}>
+                  <div className="text-4xl md:text-6xl font-bold text-white mb-1" suppressHydrationWarning={true}>
                     {timeLeft.days}
                   </div>
                   <div className="text-xs text-gray-400 uppercase tracking-wide">дней</div>
                 </div>
 
-                <div className="flex justify-center space-x-1">
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-white" suppressHydrationWarning={true}>
-                      {timeLeft.hours}
-                    </div>
-                    <div className="text-xs text-gray-400">ч</div>
+                {/* Часы, минуты, секунды */}
+                <div className="flex flex-col items-center">
+                  <div className="flex flex-row items-end justify-center">
+                    {/* Часы */}
+                    <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
+                      {timeLeft.hours.toString().padStart(2, '0')}
+                    </span>
+                    {/* Двоеточие */}
+                    <span className="flex flex-col items-center justify-center mx-1 self-center">
+                      <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="4" cy="10" r="2" fill="#6B7280" />
+                        <circle cx="4" cy="22" r="2" fill="#6B7280" />
+                      </svg>
+                    </span>
+                    {/* Минуты */}
+                    <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
+                      {timeLeft.minutes.toString().padStart(2, '0')}
+                    </span>
+                    {/* Двоеточие */}
+                    <span className="flex flex-col items-center justify-center mx-1 self-center">
+                      <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="4" cy="10" r="2" fill="#6B7280" />
+                        <circle cx="4" cy="22" r="2" fill="#6B7280" />
+                      </svg>
+                    </span>
+                    {/* Секунды */}
+                    <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
+                      {timeLeft.seconds.toString().padStart(2, '0')}
+                    </span>
                   </div>
-                  <div className="text-4xl text-gray-500 font-bold">:</div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-white" suppressHydrationWarning={true}>
-                      {timeLeft.minutes}
-                    </div>
-                    <div className="text-xs text-gray-400">м</div>
-                  </div>
-                  <div className="text-4xl text-gray-500 font-bold">:</div>
-                  <div className="text-center">
-                    <div className="text-4xl font-bold text-white" suppressHydrationWarning={true}>
-                      {timeLeft.seconds}
-                    </div>
-                    <div className="text-xs text-gray-400">с</div>
+                  {/* Подписи */}
+                  <div className="flex flex-row justify-center mt-1">
+                    <span className="text-xs text-gray-400 mx-6">ч</span>
+                    <span className="text-xs text-gray-400 mx-6">м</span>
+                    <span className="text-xs text-gray-400 mx-6">с</span>
                   </div>
                 </div>
-              </div>
-
-              <div className="mt-4 pt-2 border-t border-gray-700/50">
-                {/* Удалён блок статуса */}
               </div>
             </div>
           </div>

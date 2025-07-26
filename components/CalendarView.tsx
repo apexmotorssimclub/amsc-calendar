@@ -196,9 +196,11 @@ export default function CalendarView({ races }: CalendarViewProps) {
 
             {!isCollapsed && (
               viewMode === 'grid' ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 px-2 pb-2 md:px-4 md:pb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-4 px-2 pb-2 md:px-4 md:pb-4 items-stretch">
                   {monthRaces.map((race) => (
-                    <RaceCard key={race.id} race={race} />
+                    <div key={race.id} className="min-w-0 flex flex-col">
+                      <RaceCard race={race} />
+                    </div>
                   ))}
                 </div>
               ) : (
@@ -267,7 +269,7 @@ export default function CalendarView({ races }: CalendarViewProps) {
                               <button
                                 onClick={() => addToGoogleCalendar(race)}
                                 type="button"
-                                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl"
+                                className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl w-full md:w-auto mt-auto"
                               >
                                 <i className="ri-google-line w-4 h-4 flex items-center justify-center"></i>
                                 <span className="text-sm font-medium">В календарь</span>
