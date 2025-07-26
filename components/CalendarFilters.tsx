@@ -70,28 +70,28 @@ export default function CalendarFilters({
 
   return (
     <div className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-800/60">
-      <div className="max-w-7xl mx-auto px-2 py-4 md:px-6 md:py-4">
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-4">
+      <div className="max-w-7xl mx-auto px-4 py-6 md:px-8 md:py-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between mb-6">
           <h3 className="text-lg font-semibold text-white flex items-center">
-            <i className="ri-filter-2-line w-5 h-5 flex items-center justify-center mr-2 text-purple-400"></i>
+            <i className="ri-filter-2-line w-5 h-5 flex items-center justify-center mr-3 text-purple-400"></i>
             Фильтры
           </h3>
           <button
             onClick={clearFilters}
-            className="text-sm text-gray-400 hover:text-white cursor-pointer font-medium transition-colors duration-200"
+            className="text-sm text-gray-400 hover:text-white cursor-pointer font-medium transition-colors duration-200 px-3 py-1 rounded-md hover:bg-gray-800/60"
           >
             Сбросить всё
           </button>
         </div>
 
-        <div className="flex flex-col gap-4 md:flex-row md:items-center md:space-x-6">
+        <div className="flex flex-col gap-6 md:flex-row md:items-center md:space-x-8">
           {/* Быстрый фильтр по играм */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <span className="text-sm font-medium text-gray-300">Игра:</span>
-            <div className="flex items-center space-x-1 bg-gray-800/60 rounded-lg p-1">
+            <div className="flex items-center space-x-2 bg-gray-800/60 rounded-lg p-2">
               <button
                 onClick={() => handleGameFilter('ALL')}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap cursor-pointer ${
                   activeGameFilter === 'ALL'
                     ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
                     : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
@@ -101,7 +101,7 @@ export default function CalendarFilters({
               </button>
               <button
                 onClick={() => handleGameFilter('AC')}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap cursor-pointer ${
                   activeGameFilter === 'AC'
                     ? 'bg-gradient-to-r from-red-600 to-red-500 text-white shadow-lg'
                     : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
@@ -111,7 +111,7 @@ export default function CalendarFilters({
               </button>
               <button
                 onClick={() => handleGameFilter('ACC')}
-                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 whitespace-nowrap cursor-pointer ${
                   activeGameFilter === 'ACC'
                     ? 'bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg'
                     : 'text-gray-400 hover:text-white hover:bg-gray-700/50'
@@ -123,12 +123,12 @@ export default function CalendarFilters({
           </div>
 
           {/* Фильтр по сериям */}
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-3">
             <span className="text-sm font-medium text-gray-300">Серии:</span>
             <div className="relative">
               <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center space-x-2 px-4 py-2 bg-gray-800/60 text-gray-300 rounded-lg hover:bg-gray-700/70 transition-all duration-200 whitespace-nowrap cursor-pointer border border-gray-700/60 hover:border-gray-600/70"
+                className="flex items-center space-x-3 px-5 py-2.5 bg-gray-800/60 text-gray-300 rounded-lg hover:bg-gray-700/70 transition-all duration-200 whitespace-nowrap cursor-pointer border border-gray-700/60 hover:border-gray-600/70"
               >
                 <span className="text-sm font-medium">
                   {selectedSeries.length === 0 ? 'Все серии' : 

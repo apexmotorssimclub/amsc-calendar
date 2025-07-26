@@ -245,13 +245,13 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
 
                 {/* Часы, минуты, секунды */}
                 <div className="flex flex-col items-center">
-                  <div className="flex flex-row items-end justify-center">
+                  <div className="flex flex-row items-center justify-center">
                     {/* Часы */}
                     <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
                       {timeLeft.hours.toString().padStart(2, '0')}
                     </span>
                     {/* Двоеточие */}
-                    <span className="flex flex-col items-center justify-center mx-1 self-center">
+                    <span className="flex flex-col items-center justify-center mx-1">
                       <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="4" cy="10" r="2" fill="#6B7280" />
                         <circle cx="4" cy="22" r="2" fill="#6B7280" />
@@ -262,7 +262,7 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                       {timeLeft.minutes.toString().padStart(2, '0')}
                     </span>
                     {/* Двоеточие */}
-                    <span className="flex flex-col items-center justify-center mx-1 self-center">
+                    <span className="flex flex-col items-center justify-center mx-1">
                       <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="4" cy="10" r="2" fill="#6B7280" />
                         <circle cx="4" cy="22" r="2" fill="#6B7280" />
