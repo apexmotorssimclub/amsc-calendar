@@ -269,13 +269,8 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                       </span>
                       <span className="text-xs text-gray-400 mt-1">ч</span>
                     </div>
-                    {/* Двоеточие */}
-                    <span className="flex flex-col items-center justify-center mx-1">
-                      <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="4" cy="10" r="2" fill="#6B7280" />
-                        <circle cx="4" cy="22" r="2" fill="#6B7280" />
-                      </svg>
-                    </span>
+                    {/* Двоеточие текстовое */}
+                    <span className="text-xl md:text-3xl font-bold text-gray-400 tabular-nums align-middle leading-[1] mx-1 relative -top-3">:</span>
                     {/* Минуты */}
                     <div className="flex flex-col items-center">
                       <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
@@ -283,13 +278,8 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                       </span>
                       <span className="text-xs text-gray-400 mt-1">м</span>
                     </div>
-                    {/* Двоеточие */}
-                    <span className="flex flex-col items-center justify-center mx-1">
-                      <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="4" cy="10" r="2" fill="#6B7280" />
-                        <circle cx="4" cy="22" r="2" fill="#6B7280" />
-                      </svg>
-                    </span>
+                    {/* Двоеточие текстовое */}
+                    <span className="text-xl md:text-3xl font-bold text-gray-400 tabular-nums align-middle leading-[1] mx-1 relative -top-3">:</span>
                     {/* Секунды */}
                     <div className="flex flex-col items-center">
                       <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
