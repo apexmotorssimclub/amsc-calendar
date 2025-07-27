@@ -3,6 +3,8 @@
 
 import { useState, useEffect } from 'react';
 import { Race } from '../app/data/races';
+import { getChampionshipBySeries } from '../app/data/championships';
+import ChampionshipModal from './ChampionshipModal';
 
 interface NextRaceCountdownProps {
   race: Race | null;
@@ -15,6 +17,9 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
     minutes: 0,
     seconds: 0
   });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const championship = race ? getChampionshipBySeries(race.series) : null;
 
   useEffect(() => {
     if (!race) return;
@@ -179,7 +184,7 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-8">
-            <div className="lg:col-span-2 space-y-4 md:space-y-6">
+            <div className="lg:col-span-2">
               <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl md:rounded-2xl p-4 md:p-6 border border-gray-700/50">
                 {/* Заголовок гонки */}
                 <div className="text-center mb-4 md:mb-6">
@@ -193,7 +198,7 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                 </div>
 
                 {/* Дата и время */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6">
                   <div className="bg-gray-700/30 rounded-lg md:rounded-xl p-3 md:p-4 text-center">
                     <div className="flex items-center justify-center space-x-2 mb-2">
                       <i className="ri-calendar-2-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center text-blue-400"></i>
@@ -212,18 +217,29 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                     <p className="text-xs md:text-sm text-gray-400">МСК</p>
                   </div>
                 </div>
-              </div>
 
-              {/* Кнопка добавления в календарь */}
-              <div className="flex justify-center">
-                <button
-                  onClick={addToGoogleCalendar}
-                  type="button"
-                  className="flex items-center justify-center space-x-2 md:space-x-3 px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg md:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 whitespace-nowrap cursor-pointer shadow-lg hover:shadow-xl hover:scale-105 text-sm md:text-base font-medium"
-                >
-                  <i className="ri-google-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center"></i>
-                  <span>Добавить в календарь</span>
-                </button>
+                {/* Кнопки */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+                  <button
+                    onClick={addToGoogleCalendar}
+                    type="button"
+                    className="flex items-center justify-center space-x-2 px-4 py-3 md:px-6 md:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg md:rounded-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:scale-105 text-sm md:text-base font-medium"
+                  >
+                    <i className="ri-google-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center"></i>
+                    <span>В календарь</span>
+                  </button>
+                  
+                  {championship && (
+                    <button
+                      onClick={() => setIsModalOpen(true)}
+                      type="button"
+                      className="flex items-center justify-center space-x-2 px-4 py-3 md:px-6 md:py-4 bg-gray-700/50 text-gray-300 rounded-lg md:rounded-xl hover:bg-gray-600/50 transition-all duration-200 cursor-pointer shadow-lg hover:shadow-xl hover:scale-105 text-sm md:text-base font-medium border border-gray-600/50"
+                    >
+                      <i className="ri-information-line w-4 h-4 md:w-5 md:h-5 flex items-center justify-center"></i>
+                      <span>Подробнее</span>
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -247,9 +263,12 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                 <div className="flex flex-col items-center">
                   <div className="flex flex-row items-center justify-center">
                     {/* Часы */}
-                    <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
-                      {timeLeft.hours.toString().padStart(2, '0')}
-                    </span>
+                    <div className="flex flex-col items-center">
+                      <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
+                        {timeLeft.hours.toString().padStart(2, '0')}
+                      </span>
+                      <span className="text-xs text-gray-400 mt-1">ч</span>
+                    </div>
                     {/* Двоеточие */}
                     <span className="flex flex-col items-center justify-center mx-1">
                       <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -258,9 +277,12 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                       </svg>
                     </span>
                     {/* Минуты */}
-                    <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
-                      {timeLeft.minutes.toString().padStart(2, '0')}
-                    </span>
+                    <div className="flex flex-col items-center">
+                      <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
+                        {timeLeft.minutes.toString().padStart(2, '0')}
+                      </span>
+                      <span className="text-xs text-gray-400 mt-1">м</span>
+                    </div>
                     {/* Двоеточие */}
                     <span className="flex flex-col items-center justify-center mx-1">
                       <svg width="8" height="32" viewBox="0 0 8 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -269,15 +291,12 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
                       </svg>
                     </span>
                     {/* Секунды */}
-                    <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
-                      {timeLeft.seconds.toString().padStart(2, '0')}
-                    </span>
-                  </div>
-                  {/* Подписи */}
-                  <div className="flex flex-row justify-center mt-1">
-                    <span className="text-xs text-gray-400 mx-6">ч</span>
-                    <span className="text-xs text-gray-400 mx-6">м</span>
-                    <span className="text-xs text-gray-400 mx-6">с</span>
+                    <div className="flex flex-col items-center">
+                      <span className="text-2xl md:text-4xl font-bold text-white tabular-nums leading-[1] align-middle mx-2" suppressHydrationWarning={true}>
+                        {timeLeft.seconds.toString().padStart(2, '0')}
+                      </span>
+                      <span className="text-xs text-gray-400 mt-1">с</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -285,6 +304,15 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
           </div>
         </div>
       </div>
+
+      {/* Модальное окно */}
+      {championship && (
+        <ChampionshipModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          championship={championship}
+        />
+      )}
     </div>
   );
 }

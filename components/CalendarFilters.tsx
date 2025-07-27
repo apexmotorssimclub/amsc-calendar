@@ -2,6 +2,8 @@
 'use client';
 
 import { useState } from 'react';
+import { getChampionshipBySeries } from '../app/data/championships';
+import ChampionshipModal from './ChampionshipModal';
 
 interface CalendarFiltersProps {
   series: string[];
@@ -15,6 +17,8 @@ export default function CalendarFilters({
   onSeriesChange 
 }: CalendarFiltersProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [modalChampionship, setModalChampionship] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleSeriesToggle = (seriesName: string) => {
     if (selectedSeries.includes(seriesName)) {
@@ -67,6 +71,14 @@ export default function CalendarFilters({
   };
 
   const activeGameFilter = getActiveGameFilter();
+
+  const handleChampionshipInfo = (seriesName: string) => {
+    const championship = getChampionshipBySeries(seriesName);
+    if (championship) {
+      setModalChampionship(championship);
+      setIsModalOpen(true);
+    }
+  };
 
   return (
     <div className="bg-gray-900/95 backdrop-blur-sm border-b border-gray-800/60">
@@ -132,7 +144,7 @@ export default function CalendarFilters({
               >
                 <span className="text-sm font-medium">
                   {selectedSeries.length === 0 ? 'Все серии' : 
-                   selectedSeries.length === 1 ? selectedSeries[0].replace('AMSC ', '').replace(' 2025', '') :
+                   selectedSeries.length === 1 ? selectedSeries[0].replace('AMSC - ', '').replace(' 2025', '').replace(' ACC', '').replace(' AC', '').trim() :
                    `${selectedSeries.length} серий`}
                 </span>
                 <i className={`ri-arrow-${isOpen ? 'up' : 'down'}-s-line w-4 h-4 flex items-center justify-center transition-transform duration-200`}></i>
@@ -168,16 +180,22 @@ export default function CalendarFilters({
                             className="w-4 h-4 text-blue-600 rounded border-gray-600 focus:ring-blue-500 focus:ring-2 bg-gray-700 transition-all duration-200"
                           />
                           <div className="flex items-center space-x-2">
-                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${
+                            <span className={`px-2 py-1 rounded-md border text-xs font-medium ${
                               seriesName.includes('ACC') 
-                                ? 'bg-blue-500/20 text-blue-300'
-                                : 'bg-red-500/20 text-red-300'
+                                ? 'bg-blue-600/80 text-blue-100 border-blue-500/50'
+                                : 'bg-red-600/80 text-red-100 border-red-500/50'
                             }`}>
                               {seriesName.includes('ACC') ? 'ACC' : 'AC'}
                             </span>
                             <span className="text-sm text-gray-300 group-hover:text-white transition-colors duration-200">
-                              {seriesName.replace('AMSC ', '').replace(' 2025', '')}
+                              {seriesName.replace('AMSC - ', '').replace(' 2025', '').replace(' ACC', '').replace(' AC', '').trim()}
                             </span>
+                            <button
+                              onClick={() => handleChampionshipInfo(seriesName)}
+                              className="ml-2 text-gray-400 hover:text-gray-300 cursor-pointer font-medium"
+                            >
+                              <i className="ri-information-line w-4 h-4"></i>
+                            </button>
                           </div>
                         </label>
                       ))}
@@ -199,9 +217,9 @@ export default function CalendarFilters({
               {selectedSeries.map((seriesName) => (
                 <span
                   key={seriesName}
-                  className="inline-flex items-center px-3 py-1.5 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30 backdrop-blur-sm"
+                  className="inline-flex items-center px-3 py-1.5 bg-blue-600/80 text-blue-100 rounded-md text-sm border border-blue-500/50 backdrop-blur-sm"
                 >
-                  {seriesName.replace('AMSC ', '').replace(' 2025', '')}
+                  {seriesName.replace('AMSC - ', '').replace(' 2025', '').replace(' ACC', '').replace(' AC', '').trim()}
                   <button
                     onClick={() => handleSeriesToggle(seriesName)}
                     className="ml-2 w-4 h-4 flex items-center justify-center hover:bg-blue-500/30 rounded-full cursor-pointer transition-all duration-200"
@@ -214,6 +232,11 @@ export default function CalendarFilters({
           </div>
         )}
       </div>
+      <ChampionshipModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        championship={modalChampionship}
+      />
     </div>
   );
 }

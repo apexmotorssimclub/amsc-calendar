@@ -1,12 +1,18 @@
 'use client';
 
+import { useState } from 'react';
 import { Race } from '../app/data/races';
+import { getChampionshipBySeries } from '../app/data/championships';
+import ChampionshipModal from './ChampionshipModal';
 
 interface RaceCardProps {
   race: Race;
 }
 
 export default function RaceCard({ race }: RaceCardProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const championship = getChampionshipBySeries(race.series);
+
   const formatDateForGoogle = (dateStr: string, timeStr: string) => {
     try {
       const [day, month, year] = dateStr.split('.');
@@ -83,11 +89,17 @@ export default function RaceCard({ race }: RaceCardProps) {
 
   // Получение типа заезда
   const getRaceType = (series: string) => {
-    if (series.includes('TIME ATTACK')) return 'Тайм Атака';
+    if (series.includes('TIME ATTACK')) return 'TIME ATTACK';
     if (series.includes('GT3')) return 'GT3';
     if (series.includes('Дивизион А')) return 'Туринг А';
     if (series.includes('Дивизион Б')) return 'Туринг Б';
     return 'Гонка';
+  };
+
+  // Получение РСКГ для туринговых серий
+  const getRSCG = (series: string) => {
+    if (series.includes('Туринг')) return 'РСКГ';
+    return null;
   };
 
   // Цвета для платформы игры
@@ -106,6 +118,11 @@ export default function RaceCard({ race }: RaceCardProps) {
     return 'bg-gray-600/80 text-gray-100 border-gray-500/50';
   };
 
+  // Цвета для РСКГ
+  const getRSCGColor = () => {
+    return 'bg-indigo-600/80 text-indigo-100 border-indigo-500/50';
+  };
+
   const isPassed = isRacePassed();
 
   return (
@@ -118,6 +135,13 @@ export default function RaceCard({ race }: RaceCardProps) {
           <div className={`px-2 py-1 rounded-md border text-xs font-medium ${getGameColor(race.series)}`}>
             {getGamePlatform(race.series)}
           </div>
+          
+          {/* РСКГ для туринговых серий */}
+          {getRSCG(race.series) && (
+            <div className={`px-2 py-1 rounded-md border text-xs font-medium ${getRSCGColor()}`}>
+              {getRSCG(race.series)}
+            </div>
+          )}
           
           {/* Тип заезда */}
           <div className={`px-2 py-1 rounded-md border text-xs font-medium ${getRaceTypeColor(race.series)}`}>
@@ -152,13 +176,34 @@ export default function RaceCard({ race }: RaceCardProps) {
 
       {/* Кнопка "В календарь" */}
       {!isPassed && (
-        <button
-          onClick={addToGoogleCalendar}
-          className="mt-auto w-full px-3 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium flex items-center justify-center gap-2"
-        >
-          <i className="ri-google-line"></i>
-          В календарь
-        </button>
+        <div className="mt-auto space-y-2">
+          <button
+            onClick={addToGoogleCalendar}
+            className="w-full px-3 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 text-sm font-medium flex items-center justify-center gap-2"
+          >
+            <i className="ri-google-line"></i>
+            В календарь
+          </button>
+          
+          {championship && (
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full px-3 py-2 bg-gray-700/50 text-gray-300 rounded-lg hover:bg-gray-600/50 transition-all duration-200 text-sm font-medium flex items-center justify-center gap-2 border border-gray-600/50"
+            >
+              <i className="ri-information-line"></i>
+              Подробнее о чемпионате
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Модальное окно с информацией о чемпионате */}
+      {championship && (
+        <ChampionshipModal
+          championship={championship}
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+        />
       )}
     </div>
   );

@@ -171,7 +171,7 @@ export default function CalendarView({ races }: CalendarViewProps) {
 
   // Добавить функции getRaceType и getRaceTypeColor из RaceCard
   const getRaceType = (series: string) => {
-    if (series.includes('TIME ATTACK')) return 'Тайм Атака';
+    if (series.includes('TIME ATTACK')) return 'TIME ATTACK';
     if (series.includes('GT3')) return 'GT3';
     if (series.includes('Дивизион А')) return 'Туринг А';
     if (series.includes('Дивизион Б')) return 'Туринг Б';
