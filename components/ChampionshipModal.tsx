@@ -84,7 +84,23 @@ export default function ChampionshipModal({ championship, isOpen, onClose }: Cha
           {/* Contacts */}
           <div className="space-y-3">
             <h3 className="text-sm font-semibold text-gray-400 mb-2">Контакты</h3>
-            
+            {/* Championship Page — теперь первый */}
+            <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
+              <div className="w-8 h-8 bg-orange-600/80 rounded-lg flex items-center justify-center">
+                <i className="ri-global-line w-4 h-4 text-white flex items-center justify-center"></i>
+              </div>
+              <div className="flex-1">
+                <p className="text-xs text-gray-400">Страница чемпионата</p>
+                <a 
+                  href={championship.telegramChannel}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-orange-400 hover:text-orange-300 text-sm font-medium"
+                >
+                  Перейти на сайт
+                </a>
+              </div>
+            </div>
             {/* Manager Contact */}
             <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
               <div className="w-8 h-8 bg-blue-600/80 rounded-lg flex items-center justify-center">
@@ -102,7 +118,6 @@ export default function ChampionshipModal({ championship, isOpen, onClose }: Cha
                 </a>
               </div>
             </div>
-
             {/* Community Channel */}
             <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
               <div className="w-8 h-8 bg-purple-600/80 rounded-lg flex items-center justify-center">
@@ -120,7 +135,6 @@ export default function ChampionshipModal({ championship, isOpen, onClose }: Cha
                 </a>
               </div>
             </div>
-
             {/* Community Chat */}
             <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
               <div className="w-8 h-8 bg-green-600/80 rounded-lg flex items-center justify-center">
@@ -135,24 +149,6 @@ export default function ChampionshipModal({ championship, isOpen, onClose }: Cha
                   className="text-green-400 hover:text-green-300 text-sm font-medium"
                 >
                   @amsimchat
-                </a>
-              </div>
-            </div>
-
-            {/* Championship Page */}
-            <div className="flex items-center space-x-3 p-3 bg-gray-800/50 rounded-lg border border-gray-700/50">
-              <div className="w-8 h-8 bg-orange-600/80 rounded-lg flex items-center justify-center">
-                <i className="ri-global-line w-4 h-4 text-white flex items-center justify-center"></i>
-              </div>
-              <div className="flex-1">
-                <p className="text-xs text-gray-400">Страница чемпионата</p>
-                <a 
-                  href={championship.telegramChannel}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-orange-400 hover:text-orange-300 text-sm font-medium"
-                >
-                  Перейти на сайт
                 </a>
               </div>
             </div>
