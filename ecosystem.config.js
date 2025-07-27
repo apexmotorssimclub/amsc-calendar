@@ -4,7 +4,7 @@ module.exports = {
       name: 'amsc-calendar',
       script: 'npm',
       args: 'run start',
-      cwd: '/root/amsc-calendar',
+      cwd: '/opt/amsc-calendar',
       instances: 1,
       autorestart: true,
       watch: false,
