@@ -167,12 +167,11 @@ export default function NextRaceCountdown({ race }: NextRaceCountdownProps) {
         <div className="relative p-4 md:p-8">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4 md:mb-8 gap-4">
             <div className="flex items-center space-x-3 md:space-x-4">
-              <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-xl md:rounded-2xl flex items-center justify-center border border-blue-500/40 shadow-lg">
-                <i className="ri-timer-flash-line w-6 h-6 md:w-8 md:h-8 flex items-center justify-center text-blue-300"></i>
+              <div className="w-8 h-8 md:w-10 md:h-10 bg-gradient-to-br from-blue-500/30 to-purple-500/30 rounded-xl md:rounded-2xl flex items-center justify-center border border-blue-500/40 shadow-lg">
+                <i className="ri-timer-flash-line w-7 h-7 md:w-9 md:h-9 flex items-center justify-center text-blue-300"></i>
               </div>
               <div>
-                <h2 className="text-xl md:text-3xl font-bold text-white mb-1">Ближайшая гонка</h2>
-                <p className="text-gray-400 text-sm md:text-lg">До старта осталось</p>
+                <h2 className="text-xl md:text-3xl font-bold text-white mb-1">Ближайшее событие</h2>
               </div>
             </div>
             <div className="flex items-center space-x-3">

@@ -25,9 +25,6 @@ export default function CalendarHeader() {
           {/* Название по центру */}
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center justify-center mb-2">
-              <div className="w-8 h-8 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg shadow-lg mr-2">
-                <i className="ri-trophy-line w-4 h-4 flex items-center justify-center text-white"></i>
-              </div>
               <h1 className="text-lg font-bold text-white">
                 Календарь симрейсинга
               </h1>
@@ -72,9 +69,6 @@ export default function CalendarHeader() {
           <div className="flex-1 flex justify-center">
             <div className="flex flex-col items-center text-center">
               <div className="flex items-center justify-center mb-3">
-                <div className="w-12 h-12 flex items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl shadow-lg mr-4">
-                  <i className="ri-trophy-line w-7 h-7 flex items-center justify-center text-white"></i>
-                </div>
                 <h1 className="text-4xl font-bold text-white">
                   Календарь симрейсинга
                 </h1>
